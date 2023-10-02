@@ -25,12 +25,12 @@ jobs:
   my-job-2:
     name: job-2
     runs-on: ubuntu-latest
+    needs: my-job-1
     steps:
       - name: List Buckets
         run: |
           aws s3 ls
-        needs:
-          - job1
+
 
 
 
