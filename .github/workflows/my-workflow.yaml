@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo apt-get update -y
           sudo apt-get install python3-pip -y
-          pip3 install awscli --upgrade --user -y
+          pip3 install awscli --upgrade --user
       - name: Verify aws cli
         run: |    
           aws --version
