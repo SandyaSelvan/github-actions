@@ -1,0 +1,34 @@
+name: my-workflow
+run-name: First Workflow
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  my-job-1:
+    name: job-1
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install aws cli
+        run: |
+          sudo apt-get update -y
+          sudo apt-get install python3-pip -y
+          pip3 install awscli --upgrade --user -y
+      - name: Verify aws cli
+        run: |    
+          aws --version
+      - name: AWS Configure
+        run: |
+          aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}} && aws configure set aws_secret_access_key ${{secrets.SECRET_KEY}} && aws configure set default.region ${{vars.REGION}} && aws configure set default.output json
+  my-job-2:
+    name: job-2
+    steps:
+      - name: List Buckets
+        run: |
+          aws s3 ls
+
+
+
+
+
