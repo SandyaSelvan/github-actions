@@ -21,10 +21,16 @@ jobs:
       - name: AWS Configure
         run: |
           aws configure set aws_access_key_id ${{secrets.ACCESS_KEY}} && aws configure set aws_secret_access_key ${{secrets.SECRET_KEY}} && aws configure set default.region ${{vars.REGION}} && aws configure set default.output json
+
+  my-job-2:
+    name: job-2
+    runs-on: ubuntu-latest
+    steps:
       - name: List Buckets
         run: |
           aws s3 ls
-
+        needs:
+          - job1
 
 
 
